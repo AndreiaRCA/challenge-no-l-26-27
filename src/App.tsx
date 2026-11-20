@@ -68,6 +68,7 @@ interface SessionWallPost {
 }
 
 const STORAGE_KEY = 'rca_xv_noel_1900_v26';
+const COACH_CODE = '0719*';
 const DEFAULT_LOGO_URL = encodeURI('/logo noel.png');
 const DEFAULT_FIELD_URL = encodeURI('/terrain noel.jpeg');
 
@@ -1131,11 +1132,11 @@ export default function App() {
 
   const handleCoachSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (coachCode.trim() === '1900') {
+    if (coachCode.trim() === COACH_CODE) {
       setCoachUnlocked(true);
       setToast('Espace Prépa déverrouillé.');
     } else {
-      setToast('Code incorrect (indice : 1900).');
+      setToast('Code incorrect.');
     }
   };
 
@@ -1682,7 +1683,7 @@ export default function App() {
                         type="password"
                         value={coachCode}
                         onChange={(e) => setCoachCode(e.target.value)}
-                        placeholder="Code Prépa (1900)"
+                        placeholder="Entrer code"
                         className="px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white"
                       />
                       <button
