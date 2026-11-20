@@ -82,12 +82,7 @@ const AVATARS: { id: AvatarId; label: string; emoji: string }[] = [
 const ROLES: { id: RoleId; label: string; short: string; group: GroupId }[] = [
   { id: '5D', label: '5 de Devant', short: '5 de Devant', group: 'Avants' },
   { id: '3L', label: '3ème Ligne', short: '3ème Ligne', group: 'Avants' },
-  {
-    id: '34',
-    label: 'Trois-Quarts',
-    short: 'Trois-Quarts',
-    group: 'Trois-quarts',
-  },
+  { id: '34', label: 'Trois-Quarts', short: 'Trois-Quarts', group: 'Trois-quarts' },
 ];
 
 const INITIAL_SESSIONS: SessionItem[] = [
@@ -290,7 +285,7 @@ const INITIAL_SESSIONS: SessionItem[] = [
         heading: 'COURSE N°2 • INTERMITTENT 30"/30"',
         lines: [
           "→ 5' échauffement gammes",
-          '→ 3 x 6\' - 30"/30" ; récup 3\' 100% VMA (avec changements de direction)',
+          "→ 3 x 6' - 30\"/30\" ; récup 3' 100% VMA (avec changements de direction)",
           'Distances : 5D → 62m | 3ème Ligne → 62,5m | ¾ → 64,5m',
         ],
       },
@@ -322,8 +317,8 @@ const INITIAL_SESSIONS: SessionItem[] = [
         heading: 'OPTION EXTRA COURSE',
         lines: [
           "→ 5' échauffement gammes",
-          '→ 3x 4\' - 20" course - 20" footing (2\' récup)',
-          '→ 2x 3\'-10"/10" ; 1\'30 récup',
+          "→ 3x 4' - 20\" course - 20\" footing (2' récup)",
+          "→ 2x 3'-10\"/10\" ; 1'30 récup",
         ],
       },
     ],
@@ -420,7 +415,7 @@ const INITIAL_SESSIONS: SessionItem[] = [
         heading: 'COURSE N°3 • INTERMITTENT COURT (15"/15")',
         lines: [
           "→ 5' échauffement gammes",
-          '→ 2x 3\' - 15"/15" 2 - 90 % VMA ; 3 min récup',
+          "→ 2x 3' - 15\"/15\" 2 - 90 % VMA ; 3 min récup",
           'Distances : 5D → 62m | 3ème Ligne → 62,5m | ¾ → 64,5m',
         ],
       },
@@ -553,8 +548,7 @@ const INITIAL_WALL_POSTS: SessionWallPost[] = [
     playerName: 'Maxime L.',
     avatarId: 'rugby',
     poste: '3ème Ligne',
-    caption:
-      'Course n°1 validée sur le terrain enneigé, bonnes sensations sur la fin.',
+    caption: 'Course n°1 validée sur le terrain enneigé, bonnes sensations sur la fin.',
     photoUrl: DEFAULT_FIELD_URL,
     hearts: 6,
     createdAt: 'Hier • Trêve RCA',
@@ -565,8 +559,7 @@ const INITIAL_WALL_POSTS: SessionWallPost[] = [
     playerName: 'Lucas D.',
     avatarId: 'santa',
     poste: 'Trois-Quarts',
-    caption:
-      'Défi Noël terminé avec le blason du club, en route pour la séance suivante.',
+    caption: 'Défi Noël terminé avec le blason du club, en route pour la séance suivante.',
     photoUrl: DEFAULT_LOGO_URL,
     hearts: 5,
     createdAt: 'Aujourd’hui • Trêve RCA',
@@ -619,15 +612,13 @@ function getPlayerBadges(player: Player): PlayerBadge[] {
     });
   }
 
-  const hasNoel =
-    completedSet.has('c1-noel') || completedSet.has('c2-nouvel-an');
+  const hasNoel = completedSet.has('c1-noel') || completedSet.has('c2-nouvel-an');
   if (hasNoel) {
     badges.push({
       id: 'noel',
       label: 'Esprit de Noël',
       emoji: '🎄',
-      meaning:
-        'Débloqué en participant au défi cadeau de Noël ou du Nouvel An.',
+      meaning: 'Débloqué en participant au défi cadeau de Noël ou du Nouvel An.',
     });
   }
 
@@ -694,17 +685,14 @@ function PodiumMarches({
   onSelectBadge: (badge: PlayerBadge, playerName: string) => void;
 }) {
   if (list.length === 0) {
-    return (
-      <p className="text-xs text-slate-500 py-4 text-center">{emptyText}</p>
-    );
+    return <p className="text-xs text-slate-500 py-4 text-center">{emptyText}</p>;
   }
 
   const first = list[0];
   const second = list[1];
   const third = list[2];
 
-  const getEmoji = (id: AvatarId) =>
-    AVATARS.find((a) => a.id === id)?.emoji || '🏉';
+  const getEmoji = (id: AvatarId) => AVATARS.find((a) => a.id === id)?.emoji || '🏉';
 
   const renderBadgeChips = (p: Player) => {
     const badges = getPlayerBadges(p);
@@ -732,13 +720,9 @@ function PodiumMarches({
         {second ? (
           <>
             <span className="text-2xl mb-1">{getEmoji(second.avatarId)}</span>
-            <p className="text-xs font-extrabold text-white truncate max-w-full">
-              {second.name}
-            </p>
+            <p className="text-xs font-extrabold text-white truncate max-w-full">{second.name}</p>
             {renderBadgeChips(second)}
-            <p className="text-[11px] font-bold text-slate-300 mb-1.5">
-              {second.points} PTS
-            </p>
+            <p className="text-[11px] font-bold text-slate-300 mb-1.5">{second.points} PTS</p>
           </>
         ) : (
           <div className="h-14" />
@@ -752,13 +736,9 @@ function PodiumMarches({
       <div className="flex flex-col items-center">
         <span className="text-base mb-0.5">👑</span>
         <span className="text-3xl mb-1">{getEmoji(first.avatarId)}</span>
-        <p className="text-xs sm:text-sm font-black text-white truncate max-w-full">
-          {first.name}
-        </p>
+        <p className="text-xs sm:text-sm font-black text-white truncate max-w-full">{first.name}</p>
         {renderBadgeChips(first)}
-        <p className="text-xs font-black text-amber-400 mb-1.5">
-          {first.points} PTS
-        </p>
+        <p className="text-xs font-black text-amber-400 mb-1.5">{first.points} PTS</p>
         <div className="w-full h-28 rounded-t-2xl bg-gradient-to-b from-amber-400/50 to-amber-600/25 border border-amber-400/75 flex flex-col items-center justify-center shadow-lg shadow-amber-950/40">
           <span className="text-2xl">🥇</span>
           <span className="text-xs font-black text-amber-300">1er</span>
@@ -769,13 +749,9 @@ function PodiumMarches({
         {third ? (
           <>
             <span className="text-2xl mb-1">{getEmoji(third.avatarId)}</span>
-            <p className="text-xs font-extrabold text-white truncate max-w-full">
-              {third.name}
-            </p>
+            <p className="text-xs font-extrabold text-white truncate max-w-full">{third.name}</p>
             {renderBadgeChips(third)}
-            <p className="text-[11px] font-bold text-orange-200/90 mb-1.5">
-              {third.points} PTS
-            </p>
+            <p className="text-[11px] font-bold text-orange-200/90 mb-1.5">{third.points} PTS</p>
           </>
         ) : (
           <div className="h-14" />
@@ -790,23 +766,14 @@ function PodiumMarches({
 }
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'map' | 'podiums' | 'coach'>(
-    'map'
-  );
+  const [activeTab, setActiveTab] = useState<'map' | 'podiums' | 'coach'>('map');
   const [selectedRole, setSelectedRole] = useState<RoleId>('3L');
-  const [selectedAvatar, setSelectedAvatar] = useState<AvatarId>('rugby');
   const [sessions, setSessions] = useState<SessionItem[]>(INITIAL_SESSIONS);
-  const [editingSessionId, setEditingSessionId] = useState<string>(
-    INITIAL_SESSIONS[0].id
-  );
+  const [editingSessionId, setEditingSessionId] = useState<string>(INITIAL_SESSIONS[0].id);
   const [players, setPlayers] = useState<Player[]>(INITIAL_PLAYERS);
-  const [activePlayerId, setActivePlayerId] = useState<string>(
-    INITIAL_PLAYERS[0].id
-  );
-  const [submissions, setSubmissions] =
-    useState<Submission[]>(INITIAL_SUBMISSIONS);
-  const [wallPosts, setWallPosts] =
-    useState<SessionWallPost[]>(INITIAL_WALL_POSTS);
+  const [activePlayerId, setActivePlayerId] = useState<string>(INITIAL_PLAYERS[0].id);
+  const [submissions, setSubmissions] = useState<Submission[]>(INITIAL_SUBMISSIONS);
+  const [wallPosts, setWallPosts] = useState<SessionWallPost[]>(INITIAL_WALL_POSTS);
   const [wallPage, setWallPage] = useState<number>(0);
   const [postDescription, setPostDescription] = useState<string>('');
   const [postPhotoUrl, setPostPhotoUrl] = useState<string | null>(null);
@@ -843,15 +810,12 @@ export default function App() {
         if (Array.isArray(parsed.players) && parsed.players.length > 0) {
           setPlayers(parsed.players);
           const foundActive =
-            parsed.players.find(
-              (p: Player) => p.id === parsed.activePlayerId
-            ) || parsed.players[0];
+            parsed.players.find((p: Player) => p.id === parsed.activePlayerId) ||
+            parsed.players[0];
           setActivePlayerId(foundActive.id);
           setSelectedRole(foundActive.roleId || '3L');
-          setSelectedAvatar(foundActive.avatarId || 'rugby');
         }
-        if (Array.isArray(parsed.submissions))
-          setSubmissions(parsed.submissions);
+        if (Array.isArray(parsed.submissions)) setSubmissions(parsed.submissions);
         if (Array.isArray(parsed.wallPosts) && parsed.wallPosts.length > 0)
           setWallPosts(parsed.wallPosts);
       }
@@ -890,10 +854,8 @@ export default function App() {
 
   const currentPlayer =
     players.find((p) => p.id === activePlayerId) || players[0];
-  const currentAvatar =
-    AVATARS.find((a) => a.id === currentPlayer.avatarId) || AVATARS[0];
-  const currentRoleObj =
-    ROLES.find((r) => r.id === currentPlayer.roleId) || ROLES[1];
+  const currentAvatar = AVATARS.find((a) => a.id === currentPlayer.avatarId) || AVATARS[0];
+  const currentRoleObj = ROLES.find((r) => r.id === currentPlayer.roleId) || ROLES[1];
   const openSession = sessions.find((s) => s.id === openSessionId) || null;
   const editingSession =
     sessions.find((s) => s.id === editingSessionId) || sessions[0];
@@ -966,11 +928,8 @@ export default function App() {
     if (existingPlayer) {
       setActivePlayerId(existingPlayer.id);
       setSelectedRole(existingPlayer.roleId);
-      setSelectedAvatar(existingPlayer.avatarId);
       setJoinModalOpen(false);
-      setToast(
-        `Bon retour ${existingPlayer.name} ! Ta progression est chargée.`
-      );
+      setToast(`Bon retour ${existingPlayer.name} ! Ta progression est chargée.`);
       return;
     }
 
@@ -993,11 +952,8 @@ export default function App() {
     setPlayers((prev) => [...prev, newPlayer]);
     setActivePlayerId(newPlayer.id);
     setSelectedRole(roleObj.id);
-    setSelectedAvatar(joinAvatarId);
     setJoinModalOpen(false);
-    setToast(
-      `Bienvenue ${displayName} (${roleObj.label}) ! Profil enregistré.`
-    );
+    setToast(`Bienvenue ${displayName} (${roleObj.label}) ! Profil enregistré.`);
   };
 
   const handleProofUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -1052,9 +1008,7 @@ export default function App() {
     setWallPage(0);
     setPostDescription('');
     setPostPhotoUrl(null);
-    setToast(
-      `Publication de ${currentPlayer.name} ajoutée au Mur des Séances !`
-    );
+    setToast(`Publication de ${currentPlayer.name} ajoutée au Mur des Séances !`);
   };
 
   const handleToggleHeart = (postId: string) => {
@@ -1091,9 +1045,7 @@ export default function App() {
           trainingMinutes: alreadyDone
             ? p.trainingMinutes
             : p.trainingMinutes + Math.round(s.defaultSeconds / 60),
-          completedIds: alreadyDone
-            ? p.completedIds
-            : [...p.completedIds, s.id],
+          completedIds: alreadyDone ? p.completedIds : [...p.completedIds, s.id],
           streakCount: nextStreak,
           streakBonusAwarded: p.streakBonusAwarded || shouldAwardStreak,
         };
@@ -1131,9 +1083,7 @@ export default function App() {
   const handleSubmitExtra = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!extraPhotoUrl) {
-      setToast(
-        'Merci de joindre une photo de ta séance extra avant de valider.'
-      );
+      setToast('Merci de joindre une photo de ta séance extra avant de valider.');
       return;
     }
 
@@ -1189,14 +1139,9 @@ export default function App() {
     }
   };
 
-  const handleUpdateSubmissionStatus = (
-    id: string,
-    nextStatus: 'approved' | 'rejected'
-  ) => {
+  const handleUpdateSubmissionStatus = (id: string, nextStatus: 'approved' | 'rejected') => {
     setSubmissions((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, status: nextStatus } : item
-      )
+      prev.map((item) => (item.id === id ? { ...item, status: nextStatus } : item))
     );
     setToast(
       nextStatus === 'approved'
@@ -1224,23 +1169,15 @@ export default function App() {
     .reduce((sum, p) => sum + p.points, 0);
   const totalClashPoints = avantsPoints + troisQuartsPoints;
   const avantsPct =
-    totalClashPoints > 0
-      ? Math.round((avantsPoints / totalClashPoints) * 100)
-      : 50;
+    totalClashPoints > 0 ? Math.round((avantsPoints / totalClashPoints) * 100) : 50;
   const troisQuartsPct = totalClashPoints > 0 ? 100 - avantsPct : 50;
 
   const totalWallPages = Math.max(1, Math.ceil(wallPosts.length / 3));
   const safeWallPage = Math.min(wallPage, totalWallPages - 1);
-  const visibleWallPosts = wallPosts.slice(
-    safeWallPage * 3,
-    safeWallPage * 3 + 3
-  );
-  const topHeartsPostId = [...wallPosts].sort((a, b) => b.hearts - a.hearts)[0]
-    ?.id;
+  const visibleWallPosts = wallPosts.slice(safeWallPage * 3, safeWallPage * 3 + 3);
+  const topHeartsPostId = [...wallPosts].sort((a, b) => b.hearts - a.hearts)[0]?.id;
 
-  const trailPoints = sessions
-    .map((s) => `${s.mapPos.x},${s.mapPos.y}`)
-    .join(' ');
+  const trailPoints = sessions.map((s) => `${s.mapPos.x},${s.mapPos.y}`).join(' ');
 
   return (
     <div className="fixed inset-0 w-screen h-screen overflow-y-auto overflow-x-hidden bg-[#070b14] text-slate-100 flex flex-col lg:flex-row">
@@ -1253,9 +1190,7 @@ export default function App() {
               alt="Logo du club"
               className="w-16 h-16 rounded-2xl object-contain bg-slate-900/80 border border-sky-400/50 p-1"
             />
-            <h1 className="font-extrabold text-base text-white">
-              Le XV de Noël
-            </h1>
+            <h1 className="font-extrabold text-base text-white">Le XV de Noël</h1>
           </div>
 
           <nav className="grid grid-cols-3 lg:grid-cols-1 gap-1.5">
@@ -1306,9 +1241,7 @@ export default function App() {
               {currentAvatar.emoji}
             </div>
             <div className="min-w-0">
-              <p className="text-xs font-extrabold text-white truncate">
-                {currentPlayer.name}
-              </p>
+              <p className="text-xs font-extrabold text-white truncate">{currentPlayer.name}</p>
               <p className="text-[11px] text-slate-400 truncate">
                 {currentPlayer.poste} • Série {currentPlayer.streakCount}/3
               </p>
@@ -1389,9 +1322,7 @@ export default function App() {
                   <span>Challenge Noël</span>
                 </h2>
                 <p className="text-xs text-slate-300">
-                  • Départ d&apos;une séance → séance validée → déblocage de la
-                  séance d&apos;après • 3 séances d&apos;affilée = un badge et
-                  des points bonus.
+                  • Départ d&apos;une séance → séance validée → déblocage de la séance d&apos;après • 3 séances d&apos;affilée = un badge et des points bonus.
                 </p>
               </div>
 
@@ -1458,9 +1389,7 @@ export default function App() {
                     >
                       <div
                         className={`w-10 h-10 rounded-2xl flex items-center justify-center text-base border-2 shadow-xl transition transform ${
-                          unlocked
-                            ? 'group-hover:scale-110'
-                            : 'cursor-not-allowed'
+                          unlocked ? 'group-hover:scale-110' : 'cursor-not-allowed'
                         } ${
                           !unlocked
                             ? 'bg-slate-900/95 border-slate-600 text-slate-400'
@@ -1473,13 +1402,7 @@ export default function App() {
                             : 'bg-slate-900/95 border-amber-400/80 text-amber-300'
                         }`}
                       >
-                        {!unlocked
-                          ? '🔒'
-                          : isGift
-                          ? '🎁'
-                          : isExtra
-                          ? '🔥'
-                          : '🏉'}
+                        {!unlocked ? '🔒' : isGift ? '🎁' : isExtra ? '🔥' : '🏉'}
                       </div>
 
                       {!unlocked && (
@@ -1519,9 +1442,7 @@ export default function App() {
                   <span>Challenge Noël • Podiums</span>
                 </h2>
                 <p className="text-xs text-slate-300">
-                  • Départ d&apos;une séance → séance validée → déblocage de la
-                  séance d&apos;après • 3 séances d&apos;affilée = un badge et
-                  des points bonus.
+                  • Départ d&apos;une séance → séance validée → déblocage de la séance d&apos;après • 3 séances d&apos;affilée = un badge et des points bonus.
                 </p>
               </div>
 
@@ -1545,12 +1466,10 @@ export default function App() {
 
                 <div className="flex items-center justify-between text-xs sm:text-sm font-black">
                   <span className="text-amber-300">
-                    🦏 Avants •{' '}
-                    <span className="text-white">{avantsPoints} PTS</span>
+                    🦏 Avants • <span className="text-white">{avantsPoints} PTS</span>
                   </span>
                   <span className="text-sky-300">
-                    Trois-Quarts 🐆 •{' '}
-                    <span className="text-white">{troisQuartsPoints} PTS</span>
+                    Trois-Quarts 🐆 • <span className="text-white">{troisQuartsPoints} PTS</span>
                   </span>
                 </div>
 
@@ -1608,8 +1527,7 @@ export default function App() {
                       4. Mur des Séances
                     </p>
                     <p className="text-xs text-slate-400">
-                      Ajoute une photo de séance et sa description, et vote avec
-                      des cœurs ❤️.
+                      Ajoute une photo de séance et sa description, et vote avec des cœurs ❤️.
                     </p>
                   </div>
 
@@ -1629,9 +1547,7 @@ export default function App() {
                     <button
                       type="button"
                       disabled={safeWallPage >= totalWallPages - 1}
-                      onClick={() =>
-                        setWallPage((p) => Math.min(totalWallPages - 1, p + 1))
-                      }
+                      onClick={() => setWallPage((p) => Math.min(totalWallPages - 1, p + 1))}
                       aria-label="Publications suivantes"
                       className="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 disabled:opacity-35 border border-slate-700 text-xs font-black text-white transition"
                     >
@@ -1696,8 +1612,7 @@ export default function App() {
                           <div className="flex items-center justify-between gap-2">
                             <div className="flex items-center gap-2 min-w-0">
                               <span className="text-xl shrink-0">
-                                {AVATARS.find((a) => a.id === post.avatarId)
-                                  ?.emoji || '🏉'}
+                                {AVATARS.find((a) => a.id === post.avatarId)?.emoji || '🏉'}
                               </span>
                               <div className="min-w-0">
                                 <p className="text-xs font-black text-white truncate">
@@ -1749,9 +1664,7 @@ export default function App() {
                   <span>Challenge Noël • Espace Prépa</span>
                 </h2>
                 <p className="text-xs text-slate-300">
-                  • Départ d&apos;une séance → séance validée → déblocage de la
-                  séance d&apos;après • 3 séances d&apos;affilée = un badge et
-                  des points bonus.
+                  • Départ d&apos;une séance → séance validée → déblocage de la séance d&apos;après • 3 séances d&apos;affilée = un badge et des points bonus.
                 </p>
               </div>
 
@@ -1762,9 +1675,7 @@ export default function App() {
                       🛡️ Accès Staff
                     </h3>
                     <p className="text-xs text-slate-400">
-                      Entre le code préparateur physique pour consulter les
-                      séances validées, vérifier toutes les séances sur le
-                      terrain et modifier leur contenu.
+                      Entre le code préparateur physique pour consulter les séances validées, vérifier toutes les séances sur le terrain et modifier leur contenu.
                     </p>
                     <div className="flex flex-wrap gap-2">
                       <input
@@ -1788,8 +1699,7 @@ export default function App() {
                   <section className="bg-[#0b1120] border border-slate-800 rounded-2xl p-5 space-y-4">
                     <div className="flex items-center justify-between">
                       <h3 className="text-base font-black text-white">
-                        Suivi des joueurs & publications ({players.length}{' '}
-                        joueurs • {submissions.length} validations)
+                        Suivi des joueurs & publications ({players.length} joueurs • {submissions.length} validations)
                       </h3>
                       <button
                         type="button"
@@ -1808,9 +1718,7 @@ export default function App() {
                         >
                           <div className="min-w-0">
                             <p className="text-xs font-black text-white truncate">
-                              {AVATARS.find((a) => a.id === p.avatarId)
-                                ?.emoji || '🏉'}{' '}
-                              {p.name}
+                              {AVATARS.find((a) => a.id === p.avatarId)?.emoji || '🏉'} {p.name}
                             </p>
                             <p className="text-[11px] text-slate-400 truncate">
                               {p.poste} • {p.completedIds.length} séance(s)
@@ -1836,8 +1744,7 @@ export default function App() {
                           >
                             <div className="flex items-start gap-3">
                               <span className="text-2xl">
-                                {AVATARS.find((a) => a.id === sub.avatarId)
-                                  ?.emoji || '🏉'}
+                                {AVATARS.find((a) => a.id === sub.avatarId)?.emoji || '🏉'}
                               </span>
                               <div className="space-y-1">
                                 <div className="flex flex-wrap items-center gap-2">
@@ -1845,8 +1752,7 @@ export default function App() {
                                     {sub.playerName}
                                   </span>
                                   <span className="text-xs text-slate-400">
-                                    • {sub.poste}{' '}
-                                    {sub.createdAt ? `• ${sub.createdAt}` : ''}
+                                    • {sub.poste} {sub.createdAt ? `• ${sub.createdAt}` : ''}
                                   </span>
                                   <span
                                     className={`px-2 py-0.5 rounded-full text-[10px] font-black uppercase ${
@@ -1880,24 +1786,14 @@ export default function App() {
                             <div className="flex items-center gap-2 shrink-0">
                               <button
                                 type="button"
-                                onClick={() =>
-                                  handleUpdateSubmissionStatus(
-                                    sub.id,
-                                    'approved'
-                                  )
-                                }
+                                onClick={() => handleUpdateSubmissionStatus(sub.id, 'approved')}
                                 className="px-3.5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs transition"
                               >
                                 ✅ Valider la photo
                               </button>
                               <button
                                 type="button"
-                                onClick={() =>
-                                  handleUpdateSubmissionStatus(
-                                    sub.id,
-                                    'rejected'
-                                  )
-                                }
+                                onClick={() => handleUpdateSubmissionStatus(sub.id, 'rejected')}
                                 className="px-3 py-2 rounded-xl bg-slate-800 hover:bg-rose-950 border border-slate-700 hover:border-rose-500/50 text-slate-200 hover:text-rose-200 font-bold text-xs transition"
                               >
                                 Refuser
@@ -1915,9 +1811,7 @@ export default function App() {
                         Aperçu Terrain & Édition en Direct des Séances
                       </p>
                       <p className="text-xs text-slate-400 mt-0.5">
-                        Clique sur n’importe quelle étape du petit terrain pour
-                        la charger et modifier son texte : la mise à jour est
-                        immédiate sur le parcours joueur.
+                        Clique sur n’importe quelle étape du petit terrain pour la charger et modifier son texte : la mise à jour est immédiate sur le parcours joueur.
                       </p>
                     </div>
 
@@ -1953,10 +1847,7 @@ export default function App() {
                               key={s.id}
                               type="button"
                               onClick={() => setEditingSessionId(s.id)}
-                              style={{
-                                left: `${s.mapPos.x}%`,
-                                top: `${s.mapPos.y}%`,
-                              }}
+                              style={{ left: `${s.mapPos.x}%`, top: `${s.mapPos.y}%` }}
                               className="absolute -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center group"
                             >
                               <div
@@ -1966,11 +1857,7 @@ export default function App() {
                                     : 'bg-slate-900/95 border-amber-400/70 text-amber-200 group-hover:scale-105'
                                 }`}
                               >
-                                {s.kind === 'gift'
-                                  ? '🎁'
-                                  : s.kind === 'extra'
-                                  ? '🔥'
-                                  : '🏉'}
+                                {s.kind === 'gift' ? '🎁' : s.kind === 'extra' ? '🔥' : '🏉'}
                               </div>
                               <span
                                 className={`mt-0.5 px-1.5 py-0.5 rounded text-[9px] font-bold whitespace-nowrap max-w-[95px] truncate ${
@@ -1990,9 +1877,7 @@ export default function App() {
                         <div className="flex flex-wrap items-center justify-between gap-2">
                           <select
                             value={editingSession.id}
-                            onChange={(e) =>
-                              setEditingSessionId(e.target.value)
-                            }
+                            onChange={(e) => setEditingSessionId(e.target.value)}
                             className="px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs font-bold text-white"
                           >
                             {sessions.map((s) => (
@@ -2013,13 +1898,10 @@ export default function App() {
                               type="text"
                               value={editingSession.title}
                               onChange={(e) =>
-                                handleUpdateSessionField(
-                                  editingSession.id,
-                                  (prev) => ({
-                                    ...prev,
-                                    title: e.target.value,
-                                  })
-                                )
+                                handleUpdateSessionField(editingSession.id, (prev) => ({
+                                  ...prev,
+                                  title: e.target.value,
+                                }))
                               }
                               className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white"
                             />
@@ -2031,13 +1913,10 @@ export default function App() {
                               type="text"
                               value={editingSession.subtitle}
                               onChange={(e) =>
-                                handleUpdateSessionField(
-                                  editingSession.id,
-                                  (prev) => ({
-                                    ...prev,
-                                    subtitle: e.target.value,
-                                  })
-                                )
+                                handleUpdateSessionField(editingSession.id, (prev) => ({
+                                  ...prev,
+                                  subtitle: e.target.value,
+                                }))
                               }
                               className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white"
                             />
@@ -2046,25 +1925,19 @@ export default function App() {
 
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                           {ROLES.map((r) => (
-                            <label
-                              key={r.id}
-                              className="text-[11px] font-bold text-slate-300 space-y-1"
-                            >
+                            <label key={r.id} className="text-[11px] font-bold text-slate-300 space-y-1">
                               <span>{r.label}</span>
                               <input
                                 type="text"
                                 value={editingSession.consigneByRole[r.id]}
                                 onChange={(e) =>
-                                  handleUpdateSessionField(
-                                    editingSession.id,
-                                    (prev) => ({
-                                      ...prev,
-                                      consigneByRole: {
-                                        ...prev.consigneByRole,
-                                        [r.id]: e.target.value,
-                                      },
-                                    })
-                                  )
+                                  handleUpdateSessionField(editingSession.id, (prev) => ({
+                                    ...prev,
+                                    consigneByRole: {
+                                      ...prev.consigneByRole,
+                                      [r.id]: e.target.value,
+                                    },
+                                  }))
                                 }
                                 className="w-full px-2.5 py-1.5 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white"
                               />
@@ -2086,17 +1959,12 @@ export default function App() {
                                 value={block.lines.join('\n')}
                                 onChange={(e) => {
                                   const nextLines = e.target.value.split('\n');
-                                  handleUpdateSessionField(
-                                    editingSession.id,
-                                    (prev) => ({
-                                      ...prev,
-                                      blocks: prev.blocks.map((item, idx) =>
-                                        idx === bIdx
-                                          ? { ...item, lines: nextLines }
-                                          : item
-                                      ),
-                                    })
-                                  );
+                                  handleUpdateSessionField(editingSession.id, (prev) => ({
+                                    ...prev,
+                                    blocks: prev.blocks.map((item, idx) =>
+                                      idx === bIdx ? { ...item, lines: nextLines } : item
+                                    ),
+                                  }));
                                 }}
                                 className="w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-xs text-slate-100 leading-relaxed"
                               />
@@ -2129,8 +1997,7 @@ export default function App() {
                   Rejoindre le Challenge Noël
                 </h2>
                 <p className="text-xs text-slate-400 mt-0.5">
-                  Inscris ton prénom, ton nom, ton poste et ton avatar pour
-                  démarrer ton parcours.
+                  Inscris ton prénom, ton nom, ton poste et ton avatar pour démarrer ton parcours.
                 </p>
               </div>
               <button
@@ -2170,9 +2037,7 @@ export default function App() {
             </div>
 
             <div className="space-y-1.5">
-              <span className="text-xs font-bold text-slate-200 block">
-                Poste
-              </span>
+              <span className="text-xs font-bold text-slate-200 block">Poste</span>
               <div className="grid grid-cols-3 gap-2">
                 {ROLES.map((r) => (
                   <button
@@ -2192,9 +2057,7 @@ export default function App() {
             </div>
 
             <div className="space-y-1.5">
-              <span className="text-xs font-bold text-slate-200 block">
-                Choisir l&apos;avatar
-              </span>
+              <span className="text-xs font-bold text-slate-200 block">Choisir l&apos;avatar</span>
               <div className="grid grid-cols-5 gap-1.5">
                 {AVATARS.map((av) => (
                   <button
@@ -2208,9 +2071,7 @@ export default function App() {
                     }`}
                   >
                     <span>{av.emoji}</span>
-                    <span className="text-[9px] font-bold text-slate-300 mt-0.5">
-                      {av.label}
-                    </span>
+                    <span className="text-[9px] font-bold text-slate-300 mt-0.5">{av.label}</span>
                   </button>
                 ))}
               </div>
@@ -2242,8 +2103,7 @@ export default function App() {
                   Valider une Séance Extra
                 </h2>
                 <p className="text-xs text-slate-400 mt-0.5">
-                  Insère une photo de ta séance extra pour l’envoyer à la
-                  validation du staff.
+                  Insère une photo de ta séance extra pour l’envoyer à la validation du staff.
                 </p>
               </div>
               <button
@@ -2386,10 +2246,7 @@ export default function App() {
                         {block.heading}
                       </p>
                       {block.lines.map((line, lIdx) => (
-                        <p
-                          key={lIdx}
-                          className="text-sm sm:text-base text-slate-200 leading-relaxed"
-                        >
+                        <p key={lIdx} className="text-sm sm:text-base text-slate-200 leading-relaxed">
                           {line}
                         </p>
                       ))}
@@ -2414,15 +2271,9 @@ export default function App() {
                     <button
                       type="button"
                       onClick={() => {
-                        setChronoMode((m) =>
-                          m === 'seance' ? 'course' : 'seance'
-                        );
+                        setChronoMode((m) => (m === 'seance' ? 'course' : 'seance'));
                         setTimerRunning(false);
-                        setSecondsLeft(
-                          chronoMode === 'seance'
-                            ? 25 * 60
-                            : openSession.defaultSeconds
-                        );
+                        setSecondsLeft(chronoMode === 'seance' ? 25 * 60 : openSession.defaultSeconds);
                       }}
                       className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-bold text-slate-200 transition"
                     >
@@ -2442,10 +2293,7 @@ export default function App() {
 
             <div className="rounded-2xl border border-slate-800 bg-[#0a1020] px-5 py-3.5 flex flex-wrap items-center justify-between gap-3">
               <label className="text-xs font-bold text-slate-200 cursor-pointer">
-                📷{' '}
-                {openSession.kind === 'gift'
-                  ? 'Insérer votre photo :'
-                  : 'Joindre une photo de séance / GPS (optionnel) :'}
+                📷 {openSession.kind === 'gift' ? 'Insérer votre photo :' : 'Joindre une photo de séance / GPS (optionnel) :'}
                 <input
                   type="file"
                   accept="image/*"
